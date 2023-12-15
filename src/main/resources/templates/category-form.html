@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+
+	<title>Form Categorie</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h1 class="text-center my-4">Categoria</h1>
+
+		<form method="POST" th:object="${category}">
+
+			<!--title-->
+			<div class="mb-3">
+				<label for="title" class="form-label">Nome categoria</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="title" name="title" th:field="*{title}">
+				</div>
+			</div>
+
+			<!--button-->
+			<div class="d-flex justify-content-end mt-4">
+				<button type="submit" class="btn btn-primary">Aggiungi categoria</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
