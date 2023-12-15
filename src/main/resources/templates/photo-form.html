@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+
+	<title>Form Foto</title>
+</head>
+
+<body>
+	<div class="container">
+
+		<h1 class="text-center my-4">Form delle foto</h1>
+
+		<form th:object="${photo}" method="POST">
+
+			<!-- title -->
+			<div class="mb-3">
+				<label for="title" class="form-label">Titolo della foto</label>
+				<input type="text" class="form-control" id="title" th:field="*{title}">
+			</div>
+
+			<!-- description -->
+			<div class="mb-3">
+				<label for="description" class="form-label">Descrizione della foto</label>
+				<textarea rows="4" class="form-control" id="description" th:field="*{description}"></textarea>
+			</div>
+
+			<!-- url -->
+			<div class="mb-3">
+				<label for="url" class="form-label">Copia qui l'URL della foto</label>
+				<input type="text" class="form-control" id="url" th:field="*{url}">
+			</div>
+
+			<!-- visibility -->
+			<div class="form-check form-switch mb-3">
+				<input class="form-check-input" type="checkbox" role="switch" id="visible" th:value="*{visible}">
+				<label class="form-check-label" for="visible">Attiva se vuoi rendere la tua foto visibile a
+					tutti</label>
+			</div>
+
+			<!--categories-->
+			<p>Categorie:</p>
+			<div class="form-check form-check-inline" th:each="category : ${categories}" th:object="${category}">
+
+				<input class="form-check-input" type="checkbox" th:id="${'category-' + category.id}" th:value="*{id}"
+					th:field="${photo.categories}">
+				<label class="form-check-label" for="${'category-' + category.id}">
+					[[*{title}]]
+				</label>
+			</div>
+
+			<!-- submit button-->
+			<div class="d-flex justify-content-center mt-4">
+				<button type="submit" class="btn btn-success">Salva</button>
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>

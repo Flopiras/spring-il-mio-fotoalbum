@@ -34,7 +34,7 @@ public class Photo {
 	@URL
 	private String url;
 	
-	@Column(nullable = false)
+	@Column
 	private Boolean visible;
 	
 	//relations

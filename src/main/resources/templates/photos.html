@@ -14,25 +14,35 @@
 
 	<div class="container">
 		<h1 class="text-center my-4">Foto Album</h1>
-		
+
 		<!-- create button -->
 		<a href="/photos/create" class="btn btn-success mb-4">Aggiungi nuova foto</a>
 
 		<h3>Le tue foto:</h3>
-		
+
+		<!-- search form -->
+		<form class="mt-4">
+			<div class="mb-3">
+				<label for="search" class="form-label">Cerca</label>
+				<input id="search" type="text" class="form-control" name="q" th:value="${q}">
+			</div>
+			<div class="d-flex justify-content-center">				
+				<button type="submit" class="btn btn-primary">Cerca</button>
+			</div>
+		</form>
+
+		<!-- phots list -->
 		<div th:if="${!photos.isEmpty()}">
 
 			<div class="row">
-				<div th:each="photo : ${photos}"
-					th:object="${photo}"
-					class="col my-3">
+				<div th:each="photo : ${photos}" th:object="${photo}" class="col my-3">
 
 					<!--<a th:href="@{photos/{id}(id = *{id})}">[[*{title}]]</a>-->
-					
-						<a th:href="@{photos/{id}(id = *{id})}">
-							<img th:src="*{url}">
-						</a>
-						
+
+					<a th:href="@{photos/{id}(id = *{id})}">
+						<img th:src="*{url}">
+					</a>
+
 				</div>
 			</div>
 
