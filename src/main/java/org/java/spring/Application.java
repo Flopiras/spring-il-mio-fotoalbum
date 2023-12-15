@@ -1,5 +1,10 @@
 package org.java.spring;
 
+import org.java.spring.auth.conf.AuthConf;
+import org.java.spring.auth.db.pojo.Role;
+import org.java.spring.auth.db.pojo.User;
+import org.java.spring.auth.db.serv.RoleService;
+import org.java.spring.auth.db.serv.UserService;
 import org.java.spring.db.pojo.Category;
 import org.java.spring.db.pojo.Photo;
 import org.java.spring.db.service.CategoryService;
@@ -10,14 +15,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application  implements CommandLineRunner{
-	
+public class Application implements CommandLineRunner {
+
 	@Autowired
 	private PhotoService photoService;
-	
+
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserService userService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -25,7 +36,7 @@ public class Application  implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		//CATEGORIES
+		// CATEGORIES
 		Category c1 = new Category("bianco e nero");
 		Category c2 = new Category("photostreet");
 		Category c3 = new Category("animali");
@@ -34,7 +45,7 @@ public class Application  implements CommandLineRunner{
 		Category c6 = new Category("paesaggi");
 		Category c7 = new Category("fototessere");
 		Category c8 = new Category("natale");
-		
+
 		categoryService.save(c1);
 		categoryService.save(c2);
 		categoryService.save(c3);
@@ -43,8 +54,8 @@ public class Application  implements CommandLineRunner{
 		categoryService.save(c6);
 		categoryService.save(c7);
 		categoryService.save(c8);
-		
-		//PHOTOS
+
+		// PHOTOS
 		photoService.save(new Photo("foto1", "descrizione1", "https://picsum.photos/300?random=1", false));
 		photoService.save(new Photo("foto2", "descrizione2", "https://picsum.photos/300?random=2", false));
 		photoService.save(new Photo("foto3", "descrizione3", "https://picsum.photos/300?random=3", true));
@@ -65,6 +76,25 @@ public class Application  implements CommandLineRunner{
 		photoService.save(new Photo("foto18", "descrizione18", "https://picsum.photos/300?random=18", false));
 		photoService.save(new Photo("foto19", "descrizione19", "https://picsum.photos/300?random=19", true));
 		photoService.save(new Photo("foto20", "descrizione20", "https://picsum.photos/300?random=20", false));
+
+		// ROLES
+		Role roleUser = new Role("USER");
+		Role roleAdmin = new Role("ADMIN");
+		Role roleGod = new Role("GOD");
+
+		roleService.save(roleUser);
+		roleService.save(roleAdmin);
+		roleService.save(roleGod);
+
+		String psw = AuthConf.passwordEncoder().encode("password");
+
+		User florianaUser = new User("florianaUser", psw, roleUser);
+		User florianaAdmin = new User("florianaAdmin", psw, roleAdmin);
+		User florianaGod = new User("florianaGod", psw, roleGod);
+
+		userService.save(florianaUser);
+		userService.save(florianaAdmin);
+		userService.save(florianaGod);
 	}
 
 }
