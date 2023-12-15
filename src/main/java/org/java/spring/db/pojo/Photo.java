@@ -1,13 +1,19 @@
 package org.java.spring.db.pojo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Photo {
@@ -31,9 +37,13 @@ public class Photo {
 	@Column(nullable = false)
 	private Boolean visible;
 	
+	//relations
+	@ManyToMany
+	private List<Category> categories;
+	
 	//constructrs
 	public Photo() { }
-	public Photo(String title, String description, String url, Boolean visible) {
+	public Photo(String title, String description, String url, Boolean visible, Category...categories) {
 		
 		setTitle(title);
 		setDescription(description);
@@ -42,6 +52,16 @@ public class Photo {
 	}
 	
 	//getters and setters
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+	@JsonIgnore
+	public void setCategories(Category...categories) {	
+		setCategories(Arrays.asList(categories));
+	}
 	public int getId() {
 		return id;
 	}
