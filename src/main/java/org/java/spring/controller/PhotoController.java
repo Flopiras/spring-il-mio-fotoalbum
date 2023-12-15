@@ -69,6 +69,35 @@ public class PhotoController {
 		
 		return savePhoto(model, photo, bindingResult);
 	}
+	
+	@GetMapping("photos/edit/{id}")
+	public String editPhoto(Model model, @PathVariable int id) {
+		
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
+		
+		Photo photo = photoService.findById(id);
+		model.addAttribute("photo", photo);
+		
+		return "photo-form";
+	}
+	
+	@PostMapping("photos/edit/{id}")
+	public String updatePhoto(Model model, @Valid @ModelAttribute Photo photo, BindingResult bindingResult) {
+		
+		return savePhoto(model, photo, bindingResult);
+	}
+	
+	@PostMapping("photos/delete/{id}")
+	public String deletePhoto(@PathVariable int id) {
+		
+		Photo photo = photoService.findById(id);
+		
+		photoService.delete(photo);
+		
+		return "redirect:/";
+	}
+	
 	 
 	//methods
 	private String savePhoto(Model model, @Valid @ModelAttribute Photo photo, BindingResult bindingResult) {

@@ -33,6 +33,20 @@
 				<p> [[*{description}]] </p>
 			</div>
 		</div>
+		
+		<!--buttons-->
+		<div class="d-flex justify-content-end align-items-center my-4">
+
+			<!--edit-->
+			<a th:href="@{/photos/edit/{id} (id=*{id})}" class="btn btn-warning text-white">Modifica</a>
+
+			<!--delete-->
+			<form class="mx-4" th:action="@{/photos/delete/{id} (id=*{id})}" method="POST">
+				<button class="btn btn-danger">Elimina</button>
+			</form>
+
+			
+		</div>
 	</div>
 
 <body>
