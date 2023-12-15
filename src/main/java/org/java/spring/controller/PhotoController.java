@@ -20,9 +20,11 @@ public class PhotoController {
 	@GetMapping("/")
 	public String getIndex(Model model, @RequestParam(required = false) String q) {
 		
-		List<Photo> photos = q == null 
-							 ? photoService.findAll()
-							 : photoService.findByName(q);
+		
+		List<Photo> photos = photoService.findAll();
+		//List<Photo> photos = q == null 
+		//					 ? photoService.findAll()
+		//					 : photoService.findByName(q);
 		
 		model.addAttribute("photos", photos);
 		

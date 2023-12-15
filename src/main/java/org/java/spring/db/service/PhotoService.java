@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class PhotoService {
 	
 	@Autowired
-	PhotoRepository photoRepository;
+	private PhotoRepository photoRepository;
 	
 	public List<Photo> findAll() {
 		
@@ -23,9 +23,9 @@ public class PhotoService {
 		return photoRepository.findById(id).get();
 	}
 	
-	public List<Photo> findByName(String query) {
+	public List<Photo> findByTitle(String query) {
 		
-		return photoRepository.findByNameIgnoreCase(query);
+		return photoRepository.findByTitleIgnoreCase(query);
 	}
 	
 	public void save(Photo photo) {
