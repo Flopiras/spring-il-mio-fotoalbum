@@ -14,22 +14,33 @@
 
 	<div class="container">
 		<h1 class="text-center my-4">Foto Album</h1>
+		
+		<!-- create button -->
+		<a href="/photos/create" class="btn btn-success mb-4">Aggiungi nuova foto</a>
 
 		<h3>Le tue foto:</h3>
-
+		
 		<div th:if="${!photos.isEmpty()}">
 
-			<ul>
-				<li th:each="photo : ${photos}"
-					th:object="${photo}">
+			<div class="row">
+				<div th:each="photo : ${photos}"
+					th:object="${photo}"
+					class="col my-3">
 
-						<a th:href="@{photos/{id}(id = *{id})}">[[*{title}]]</a>
-					<!--					<img th:src="*{url}">-->
-				</li>
-			</ul>
+					<!--<a th:href="@{photos/{id}(id = *{id})}">[[*{title}]]</a>-->
+					
+						<a th:href="@{photos/{id}(id = *{id})}">
+							<img th:src="*{url}">
+						</a>
+						
+				</div>
+			</div>
 
 		</div>
 
+		<h6 th:if="${photos.isEmpty()}" class="text-center">
+			Spiacenti, non ci sono foto disponibili
+		</h6>
 	</div>
 
 </body>
