@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -20,17 +21,25 @@ public class PhotoController {
 	@GetMapping("/")
 	public String getIndex(Model model, @RequestParam(required = false) String q) {
 		
-		
-		List<Photo> photos = photoService.findAll();
-		//List<Photo> photos = q == null 
-		//					 ? photoService.findAll()
-		//					 : photoService.findByName(q);
+		List<Photo> photos = q == null 
+							 ? photoService.findAll()
+							 : photoService.findByTitle(q);
 		
 		model.addAttribute("photos", photos);
 		
 		model.addAttribute("q", q == null ? "" : q);
 		
 		return "photos";
+	}
+	
+	@GetMapping("/photos/{id}")
+	public String photoDetail(Model model, @PathVariable int id) {
+		
+		Photo photo = photoService.findById(id);
+		
+		model.addAttribute("photo", photo);
+		
+		return "photo";
 	}
 
 }
