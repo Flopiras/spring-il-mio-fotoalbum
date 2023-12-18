@@ -21,11 +21,13 @@ public class AuthConf {
 		http.csrf().disable()
 			.cors().disable()
 			.authorizeHttpRequests()
-			.requestMatchers("/photos/create/**").hasAnyAuthority("ADMIN", "GOD")	// PIZZA crete
+			.requestMatchers("/photos/**").permitAll()
+			.requestMatchers("/photos/create/**").hasAnyAuthority("ADMIN", "GOD")	// PIZZA create
 			.requestMatchers("/photos/edit/**").hasAnyAuthority("ADMIN", "GOD") // PIZZA edit
-			.requestMatchers("/categories/create/**").hasAnyAuthority("ADMIN", "GOD")	// INGREDIENT crete
+			.requestMatchers("/categories/create/**").hasAnyAuthority("ADMIN", "GOD")	// INGREDIENT create
 			.requestMatchers("/api/photos/**").permitAll()
-//			.requestMatchers("/css/**", "/js/**", "/webjars/**").permitAll()
+			.requestMatchers("/").permitAll()
+			.requestMatchers("/css/**", "/js/**", "/webjars/**").permitAll()
 			.and().formLogin()
 			.and().logout();
 

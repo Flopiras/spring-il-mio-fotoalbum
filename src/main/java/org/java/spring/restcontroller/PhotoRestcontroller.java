@@ -35,7 +35,7 @@ public class PhotoRestcontroller {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<Photo> getPizza(@PathVariable int id) {
+	public ResponseEntity<Photo> getPhoto(@PathVariable int id) {
 		
 		Photo photo = photoService.findById(id);
 		
