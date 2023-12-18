@@ -3,11 +3,12 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import PhotoIndex from './components/PhotoIndex.vue';
 import photoShow from './components/PhotoShow.vue';
+import MessageForm from './components/MessageForm.vue';
 
 const endpoint = "http://localhost:8080/api/photos";
 
 export default {
-  components: { AppHeader, PhotoIndex, photoShow },
+  components: { AppHeader, PhotoIndex, photoShow, MessageForm },
 
   data() {
     return {
@@ -64,6 +65,9 @@ export default {
 
     <!--show page  -->
     <photoShow v-else :photo="selectedPhoto" @close-show="closeShow" />
+
+    <!-- message form -->
+    <MessageForm v-if="selectedPhoto == null" />
 
   </div>
 </template>

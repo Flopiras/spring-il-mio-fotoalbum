@@ -1,15 +1,9 @@
 <script>
-import MessageForm from './MessageForm.vue';
-
-
-
 export default {
-    components: { MessageForm },
     props: {
         photo: Object
     },
     emits: ["closeShow"],
-    components: { MessageForm }
 }
 </script>
 
@@ -29,7 +23,4 @@ export default {
         <h5>Descrizione</h5>
         <p>{{ photo.description }}</p>
     </div>
-
-    <!-- message form -->
-    <MessageForm />
 </template>
