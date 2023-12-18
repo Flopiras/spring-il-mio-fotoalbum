@@ -25,7 +25,7 @@ public class AuthConf {
 			.requestMatchers("/photos/edit/**").hasAnyAuthority("ADMIN", "GOD") // PIZZA edit
 			.requestMatchers("/categories/create/**").hasAnyAuthority("ADMIN", "GOD")	// INGREDIENT crete
 			.requestMatchers("/api/photos/**").permitAll()
-			.requestMatchers("/**").permitAll()
+//			.requestMatchers("/css/**", "/js/**", "/webjars/**").permitAll()
 			.and().formLogin()
 			.and().logout();
 
