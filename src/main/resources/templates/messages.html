@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+
+	<title>Messages</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<!-- back button -->
+		<a href="/" class="btn btn-secondary my-4">Torna alle foto</a>
+
+		<h1 class="text-center my-4">Messaggi</h1>
+
+		<!-- messages list -->
+		<div th:if="${!messages.isEmpty()}">
+
+			<ul>
+				<li th:each="message : ${messages}" th:object="${message}" class="col my-3">
+
+
+					<a th:href="@{messages/{id}(id = *{id})}">
+						[[*{title}]]
+					</a>
+
+				</li>
+			</ul>
+
+		</div>
+
+		<h6 th:if="${messages.isEmpty()}" class="text-center">
+			Spiacenti, non ci sono messaggi disponibili
+		</h6>
+	</div>
+
+</body>
+
+</html>

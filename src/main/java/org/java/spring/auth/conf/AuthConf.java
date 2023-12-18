@@ -25,6 +25,7 @@ public class AuthConf {
 			.requestMatchers("/photos/create/**").hasAnyAuthority("ADMIN", "GOD")	// PHOTOS create
 			.requestMatchers("/photos/edit/**").hasAnyAuthority("ADMIN", "GOD") // PHOTOS edit
 			.requestMatchers("/categories/create/**").hasAnyAuthority("ADMIN", "GOD")	// INGREDIENT create
+			.requestMatchers("/messages/**").permitAll()
 			.requestMatchers("/api/photos/**").permitAll()
 			.requestMatchers("/api/messages/**").permitAll()
 			.requestMatchers("/").permitAll()
