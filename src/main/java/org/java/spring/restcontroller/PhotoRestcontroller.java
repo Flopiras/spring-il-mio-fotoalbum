@@ -27,9 +27,11 @@ public class PhotoRestcontroller {
 	private PhotoService photoService;
 	
 	@GetMapping
-	public ResponseEntity<List<Photo>> getIndex(@RequestParam(required = false) String q) {
+	public ResponseEntity<List<Photo>> getIndex() {
 		
-		List<Photo> photos = q == null ? photoService.findAll() : photoService.findByTitle(q);
+		List<Photo> photos = photoService.findAllByVisible();
+		
+//		List<Photo> photos = q == null ? photoService.findAllByVisible() : photoService.findByTitle(q);
 		
 		return new ResponseEntity<>(photos, HttpStatus.OK);
 	}
