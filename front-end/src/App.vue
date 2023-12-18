@@ -26,6 +26,11 @@ export default {
 
     },
 
+    getFilteredPhotos() {
+
+      return this.filteredPhotos = this.photos.filter(photo => photo.visible);
+    },
+
     openShow(id) {
 
       this.photos.forEach((photo) => {
