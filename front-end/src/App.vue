@@ -1,11 +1,12 @@
 <script>
-import AppHeader from './components/AppHeader.vue';
 import axios from 'axios';
+import AppHeader from './components/AppHeader.vue';
+import PhotoIndex from './components/PhotoIndex.vue';
 
 const endpoint = "http://localhost:8080/api/photos";
 
 export default {
-  components: { AppHeader },
+  components: { AppHeader, PhotoIndex },
 
   data() {
     return {
@@ -33,4 +34,12 @@ export default {
 <template>
   <!-- header -->
   <appHeader />
+
+  <!-- main -->
+  <div class="container">
+
+    <!-- index page -->
+    <photoIndex :photos="photos" />
+
+  </div>
 </template>
