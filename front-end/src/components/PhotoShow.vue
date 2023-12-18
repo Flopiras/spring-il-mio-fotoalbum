@@ -2,11 +2,16 @@
 export default {
     props: {
         photo: Object
-    }
+    },
+
+    emits: ["closeShow"]
 }
 </script>
 
 <template>
+    <!-- back button -->
+    <button @click="$emit('closeShow')" class="btn btn-secondary my-4">Torna alla home</button>
+
     <h1 class="text-center mt-4">{{ photo.title }}</h1>
 
     <!-- image -->
