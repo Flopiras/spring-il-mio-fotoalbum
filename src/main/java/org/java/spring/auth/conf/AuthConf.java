@@ -22,10 +22,11 @@ public class AuthConf {
 			.cors().disable()
 			.authorizeHttpRequests()
 			.requestMatchers("/photos/**").permitAll()
-			.requestMatchers("/photos/create/**").hasAnyAuthority("ADMIN", "GOD")	// PIZZA create
-			.requestMatchers("/photos/edit/**").hasAnyAuthority("ADMIN", "GOD") // PIZZA edit
+			.requestMatchers("/photos/create/**").hasAnyAuthority("ADMIN", "GOD")	// PHOTOS create
+			.requestMatchers("/photos/edit/**").hasAnyAuthority("ADMIN", "GOD") // PHOTOS edit
 			.requestMatchers("/categories/create/**").hasAnyAuthority("ADMIN", "GOD")	// INGREDIENT create
 			.requestMatchers("/api/photos/**").permitAll()
+			.requestMatchers("/api/messages/**").permitAll()
 			.requestMatchers("/").permitAll()
 			.requestMatchers("/css/**", "/js/**", "/webjars/**").permitAll()
 			.and().formLogin()

@@ -6,8 +6,10 @@ import org.java.spring.auth.db.pojo.User;
 import org.java.spring.auth.db.serv.RoleService;
 import org.java.spring.auth.db.serv.UserService;
 import org.java.spring.db.pojo.Category;
+import org.java.spring.db.pojo.Message;
 import org.java.spring.db.pojo.Photo;
 import org.java.spring.db.service.CategoryService;
+import org.java.spring.db.service.MessageService;
 import org.java.spring.db.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MessageService messageService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -77,6 +82,20 @@ public class Application implements CommandLineRunner {
 		photoService.save(new Photo("foto19", "descrizione19", "https://picsum.photos/300?random=19", true));
 		photoService.save(new Photo("foto20", "descrizione20", "https://picsum.photos/300?random=20", false));
 
+		//MESSAGES
+		Message m1 = new Message("messaggio1", "contenuto del messaggio 1");
+		Message m2 = new Message("messaggio2", "contenuto del messaggio 2");
+		Message m3 = new Message("messaggio3", "contenuto del messaggio 3");
+		Message m4 = new Message("messaggio4", "contenuto del messaggio 4");
+		Message m5 = new Message("messaggio5", "contenuto del messaggio 5");
+		
+		messageService.save(m1);
+		messageService.save(m2);
+		messageService.save(m3);
+		messageService.save(m4);
+		messageService.save(m5);
+		
+		
 		// ROLES
 		Role roleUser = new Role("USER");
 		Role roleAdmin = new Role("ADMIN");
