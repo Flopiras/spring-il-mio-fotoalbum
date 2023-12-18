@@ -2,15 +2,17 @@
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import PhotoIndex from './components/PhotoIndex.vue';
+import photoShow from './components/PhotoShow.vue';
 
 const endpoint = "http://localhost:8080/api/photos";
 
 export default {
-  components: { AppHeader, PhotoIndex },
+  components: { AppHeader, PhotoIndex, photoShow },
 
   data() {
     return {
-      photos: [],
+      photos: null,
+      selectedPhoto: null,
     }
   },
 
@@ -23,6 +25,16 @@ export default {
         })
 
     },
+
+    openShow(id) {
+
+      this.photos.forEach((photo) => {
+
+        if (photo.id === id) {
+          this.selectedPhoto = photo;
+        }
+      });
+    }
   },
 
   created() {
@@ -39,7 +51,10 @@ export default {
   <div class="container">
 
     <!-- index page -->
-    <photoIndex :photos="photos" />
+    <photoIndex :photos="photos" @open-show="openShow" v-if="selectedPhoto == null" />
+
+    <!--show page  -->
+    <photoShow v-else :photo="selectedPhoto" />
 
   </div>
 </template>
