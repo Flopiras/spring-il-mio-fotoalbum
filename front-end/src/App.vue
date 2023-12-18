@@ -34,6 +34,10 @@ export default {
           this.selectedPhoto = photo;
         }
       });
+    },
+
+    closeShow() {
+      this.selectedPhoto = null;
     }
   },
 
@@ -54,7 +58,7 @@ export default {
     <photoIndex :photos="photos" @open-show="openShow" v-if="selectedPhoto == null" />
 
     <!--show page  -->
-    <photoShow v-else :photo="selectedPhoto" />
+    <photoShow v-else :photo="selectedPhoto" @close-show="closeShow" />
 
   </div>
 </template>
