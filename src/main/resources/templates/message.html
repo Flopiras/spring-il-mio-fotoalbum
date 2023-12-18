@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+
+	<title>Dettaglio messaggio</title>
+</head>
+
+<div class="container" th:object="${message}">
+
+	<!--home button-->
+	<a href="/messages" class="btn btn-secondary text-white mt-4">Torna ai messaggi</a>
+
+	<h1 class="text-center my-4">[[*{title}]]</h1>
+
+			<!-- content -->
+			<div>
+				<h4>Contenuto del messaggio:</h4>
+				<p> [[*{content}]] </p>
+			
+	</div>
+
+	<!--buttons-->
+	<div class="d-flex justify-content-end align-items-center my-4">
+
+		<!--delete-->
+		<form class="mx-4" th:action="@{/messages/delete/{id} (id=*{id})}" method="POST">
+			<button class="btn btn-danger">Elimina</button>
+		</form>
+
+	</div>
+</div>
+
+<body>
+
+</body>
+
+</html>
